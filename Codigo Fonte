@@ -1,0 +1,56 @@
+import network
+import time
+from machine import Pin
+import dht
+import ujson
+from umqtt.simple import MQTTClient
+import ussl  # Importar módulo SSL para conexões seguras
+
+# Configurações do MQTT
+MQTT_CLIENT_ID = "Weather_update_to_MQTT"
+MQTT_BROKER    = "broker.mqttdashboard.com"
+MQTT_PORT      = 8883  # Porta para conexão segura
+MQTT_USER      = "bsccsds"
+MQTT_PASSWORD  = "secret"
+MQTT_TOPIC     = "MQTT_weather"
+
+weather = dht.DHT22(Pin(17))
+
+# Conectar ao Wi-Fi
+print("Conectando ao Wifi", end="")
+sta_if = network.WLAN(network.STA_IF)
+sta_if.active(True)
+sta_if.connect('Wokwi-GUEST', '')
+while not sta_if.isconnected():
+    print(".", end="")
+    time.sleep(0.1)
+print(" Conectado!")
+
+# Conectar ao servidor MQTT
+print("Conectando ao servidor MQTT... ", end="")
+client = MQTTClient(MQTT_CLIENT_ID, MQTT_BROKER, port=MQTT_PORT, user=MQTT_USER, password=MQTT_PASSWORD, ssl=True)
+
+try:
+    client.connect()
+    print("Conectado ao servidor MQTT!")
+except Exception as e:
+    print("Falha ao conectar ao MQTT:", e)
+    while True:  # Loop infinito em caso de falha
+        time.sleep(1)
+
+current_weather = ""
+while True:
+    print("Medindo humidade e temperatura ... ", end="")
+    weather.measure()
+    message = ujson.dumps({
+        "temperatura": weather.temperature(),
+        "humidade": weather.humidity(),
+    })
+    if message != current_weather:
+        print("Houve uma mudança, salvando informações!")
+        print("Publicando informações ao servidor MQTT {}: {}".format(MQTT_TOPIC, message))
+        client.publish(MQTT_TOPIC, message)
+        current_weather = message
+    else:
+        print("Sem mudanças")
+    time.sleep(1)
