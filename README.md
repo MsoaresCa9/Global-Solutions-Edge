@@ -70,7 +70,7 @@ O servidor MQTT atua como o ponto central de comunicação entre o dispositivo e
 
 Para ver o funcionamento do projeto em tempo real e acompanhar as medições de temperatura e umidade publicadas no servidor MQTT, você pode acessar a **demonstração online** através do seguinte link:
 
-[**Demonstração do Projeto**](#)  https://wokwi.com/projects/414903759731181569
+[**Demonstração do Projeto**](#) https://wokwi.com/projects/414925700008639489
 
 ### Integrantes do Projeto
 
