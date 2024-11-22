@@ -1,8 +1,12 @@
+Segue a atualização do README com o link da demonstração no Wokwi:  
+
+---
+
 # README - Projeto IoT com Sensor DHT22 e Comunicação MQTT  
 
 ## Descrição do Projeto  
 
-Este projeto utiliza um microcontrolador com suporte a WiFi para capturar dados de temperatura e umidade utilizando o sensor DHT22 e publicá-los em um servidor MQTT. A aplicação é configurada para operar em uma rede WiFi específica, conectando-se a um broker MQTT para troca de mensagens. Os dados são enviados para tópicos dedicados, permitindo monitoramento remoto e integração com sistemas IoT.
+Este projeto utiliza um microcontrolador com suporte a WiFi para capturar dados de temperatura e umidade utilizando o sensor DHT22 e publicá-los em um servidor MQTT. A aplicação é configurada para operar em uma rede WiFi específica, conectando-se a um broker MQTT para troca de mensagens. Os dados são enviados para tópicos dedicados, permitindo monitoramento remoto e integração com sistemas IoT.  
 
 ---
 
@@ -92,9 +96,10 @@ Umidade: 45.6% Temperatura: 23.7°C
 
 ---
 
-## Vídeo de Demonstração  
+## Demonstrações  
 
-Confira o vídeo de demonstração do projeto no YouTube: [https://youtu.be/X3XkPsLhWKg](https://youtu.be/X3XkPsLhWKg)  
+- **Vídeo de Demonstração**: [https://youtu.be/X3XkPsLhWKg](https://youtu.be/X3XkPsLhWKg)  
+- **Simulação Online no Wokwi**: [https://wokwi.com/projects/414925700008639489](https://wokwi.com/projects/414925700008639489)  
 
 ---
 
